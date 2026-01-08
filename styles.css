@@ -1,32 +1,30 @@
 /* Basic page setup */
-body, html {
+html, body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
+    width: 100%;
 }
+
 
 /* SIMPLE NAVBAR */
 .navbar {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 20px;
 
-    background: #ffffff;
-    padding: 15px 30px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-
+    background: #03274e;
+    padding: 15px 40px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-}
 
-/* Logo */
+}
 .logo {
     width: 70px;
     height: auto;
+    background-color: white;
 }
 
 
@@ -53,12 +51,12 @@ body, html {
 }
 
 
-.main-container {
+/* .main-container {
     width: 100%;
     max-width: none;
     padding: 0;
     margin: 0;
-}
+} */
 
 
 /* Banner */
@@ -89,27 +87,79 @@ body, html {
 
 /* Auto slider */
 .slider {
-    width: 100%;
-    max-width: 900px;
-    height: 350px;
-    margin: 0 auto 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+
+    padding: 40px 60px;
+    background: linear-gradient(135deg, #f5faff, #ffffff);
+    border-radius: 12px;
+}
+
+/* LEFT TEXT */
+.slider-text {
+    max-width: 45%;
+    text-align: left;
+}
+
+.slider-text h2 {
+    font-size: 2.5rem;
+    margin: 10px 0;
+    color: #1EA0EA;
+}
+
+.slider-text p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+.tagline {
+    background: #e8f4ff;
+    color: #1EA0EA;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.cta-btn {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background: #1EA0EA;
+    color: white;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.cta-btn:hover {
+    background: #168bd1;
+}
+
+/* RIGHT IMAGES */
+.slider-images {
+    position: relative;
+    width: 50%;
+    height: 300px;
     overflow: hidden;
     border-radius: 10px;
-    position: relative;
 }
-.slider img {
+
+.slider-images img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     position: absolute;
-    top: 0;
-    left: 0;
-    transition: opacity 1s ease-in-out;
     opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
-.slider img.active {
+
+.slider-images img.active {
     opacity: 1;
 }
+
 
 /* Listing Items */
 .listing {
