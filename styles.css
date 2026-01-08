@@ -29,7 +29,7 @@ body, html {
     height: auto;
 }
 
-/* Search bar */
+
 .navbar #search-bar {
     flex: 1;
     max-width: 500px;
@@ -38,7 +38,7 @@ body, html {
     border: 1px solid #ccc;
 }
 
-/* Cart button in navbar */
+
 .cart-nav {
     background: #ffc107;
     color: #000;
@@ -54,16 +54,12 @@ body, html {
 
 
 .main-container {
-    width: 95%;
-    max-width: 2500px;
-    background: white;
-    padding: 20px;
-    margin-top: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    border-radius: 10px;
-    text-align: center;
-    position: relative;
+    width: 100%;
+    max-width: none;
+    padding: 0;
+    margin: 0;
 }
+
 
 /* Banner */
 .site-banner {
