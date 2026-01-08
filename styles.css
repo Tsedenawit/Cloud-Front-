@@ -200,14 +200,14 @@ button {
     transition: background 0.3s;
 }
 button:hover {
-    background-color: #45a049;
+    background-color: #054488;
 }
 
 .cart-button {
-    background-color: #007bff;
+    background-color: #054488;
 }
 .cart-button:hover {
-    background-color: #0056b3;
+    background-color: #054488;
 }
 
 /* Cart Panel */
