@@ -13,17 +13,34 @@
 <header class="navbar">
     <img src="./Images/Logo.png" alt="CloudBoundPCs Logo" class="logo">
 
-    <input 
-        type="text" 
-        id="search-bar" 
-        placeholder="Search products..."
-        onkeypress="handleSearch(event)"
-    >
+   <div class="menu-wrapper">
+        <div class="burger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
 
-    <button id="cart-toggle" class="cart-nav">
-        🛒 <span id="cart-count">0</span>
-    </button>
+        <nav id="navMenu" class="nav-menu">
+            <a href="#desktops-listing">Desktops</a>
+            <a href="#laptops-listing">Laptops</a>
+            <a href="#accessories-listing">Accessories</a>
+        </nav>
+    </div>
+
+    <input type="text" id="search-bar" placeholder="Search products..." />
 </header>
+
+<nav id="navMenu" class="nav-menu">
+    <a href="#desktops-listing">Desktops</a>
+    <a href="#laptops-listing">Laptops</a>
+    <a href="#accessories-listing">Accessories</a>
+</nav>
+<script>
+function toggleMenu() {
+    document.getElementById("navMenu").classList.toggle("active");
+}
+</script>
+
 
 <div class="slider">
 

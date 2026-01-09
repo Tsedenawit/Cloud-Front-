@@ -7,33 +7,74 @@ html, body {
     width: 100%;
 }
 
-
-/* SIMPLE NAVBAR */
-.navbar {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-
-    background: #054488;
-    padding: 15px 40px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-
-}
 .logo {
     width: 70px;
     height: auto;
     background-color: white;
 }
 
+/* Make sure navbar lines up */
+.navbar{
+    display:flex;
+    align-items:center;
+    justify-content: space-between;
+    gap: 16px;
+    position: relative; 
+    background-color: #054488;
+}
 
-.navbar #search-bar {
-    flex: 1;
-    max-width: 500px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
+/* Burger icon */
+.burger{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+    cursor:pointer;
+    padding:10px;
+    border-radius:10px;
+    transition: background 0.2s ease;
+}
+
+.burger:hover{
+    background: rgba(0,0,0,0.05);
+}
+
+.burger span{
+    width:24px;
+    height:3px;
+    background:#222;
+    border-radius:2px;
+}
+
+
+.nav-menu{
+    display:none;
+    position:absolute;
+    top: 70px;         
+    left: 20px;   
+    left: auto;     
+    background:#fff;
+    border-radius:12px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    padding:10px;
+    min-width: 180px;
+    z-index: 1000;
+}
+
+.nav-menu a{
+    display:block;
+    padding:10px 12px;
+    text-decoration:none;
+    color:#222;
+    border-radius:8px;
+}
+
+.nav-menu a:hover{
+    background:#f3f3f3;
+}
+
+/* When active */
+.nav-menu.active{
+    display:block;
 }
 
 
@@ -239,8 +280,6 @@ html, body {
 .spec-btn:hover {
     background: #e0e0e0;
 }
-
-
 
 button {
     padding: 10px 20px;
