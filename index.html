@@ -137,6 +137,18 @@ function toggleMenu() {
   <button class="view-cart-btn" onclick="goToCart()">View Cart</button>
 </div>
 
+
+<div id="footer-placeholder"></div>
+
+<script>
+fetch("footer.html")
+  .then(res => res.text())
+  .then(html => {
+    document.getElementById("footer-placeholder").innerHTML = html;
+  });
+</script>
+
+
 <script>
     // ---------- CART FUNCTIONALITY ----------
     let cart = [];

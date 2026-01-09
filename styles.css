@@ -408,8 +408,30 @@ button:hover {
 }
 
 
-footer {
-    margin-top: 40px;
-    color: #888;
-    font-size: 0.9rem;
+.site-footer {
+  margin-top: 60px;
+  background: #f8f9fa;
+  border-top: 1px solid #e0e0e0;
+  padding: 20px 30px;
 }
+
+.footer-content {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.footer-links a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #555;
+}
+
+.footer-links a:hover {
+  color: #007bff;
+}
+

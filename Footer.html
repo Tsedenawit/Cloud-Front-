@@ -9,12 +9,3 @@
     </div>
   </div>
 </footer>
-
-<script>
-  fetch("footer.html")
-    .then(res => res.text())
-    .then(data => {
-      document.getElementById("footer-placeholder").innerHTML = data;
-    })
-    .catch(err => console.error("Footer load failed:", err));
-</script>
