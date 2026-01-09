@@ -29,9 +29,11 @@
 
     <input type="text" id="search-bar" placeholder="Search products..." />
 
-    <button id="cart-toggle" class="cart-nav">
-        🛒 <span id="cart-count">0</span>
-    </button>
+<button id="cart-toggle" class="cart-nav" onclick="toggleMiniCart()">
+  🛒 <span id="cart-count">0</span>
+</button>
+
+
 </header>
 
 <nav id="navMenu" class="nav-menu">
@@ -115,26 +117,49 @@ function toggleMenu() {
     </footer>
 </div>
 
-<!-- Floating Cart Button -->
 
-<!-- Cart Panel -->
-<div id="cart-panel">
-    <h2>Your Cart</h2>
-    <div id="cart-items"></div>
-    <div id="total-price"></div>
-    <button class="cart-button" onclick="checkout()">Proceed to Checkout</button>
+<div id="specs-modal">
+    <div id="specs-box">
+        <span id="close-specs" onclick="closeSpecs()">X</span>
+        <h3>Specifications</h3>
+        <p id="specs-text"></p>
+    </div>
+</div>
+
+<!-- Mini Cart -->
+<div id="mini-cart" class="mini-cart">
+  <h3>Your Cart</h3>
+
+  <div id="mini-cart-items"></div>
+
+  <div class="mini-cart-total" id="mini-cart-total"></div>
+
+  <button class="view-cart-btn" onclick="goToCart()">View Cart</button>
 </div>
 
 <script>
     // ---------- CART FUNCTIONALITY ----------
     let cart = [];
+function addToCart(name, price) {
+  const cart = loadCart();
+  const existing = cart.find(i => i.name === name);
 
-    function addToCart(name, price){
-        let existing = cart.find(i => i.name === name);
-        if(existing) existing.quantity++;
-        else cart.push({name, price, quantity:1});
-        updateCart();
-    }
+  if (existing) existing.quantity++;
+  else cart.push({ name, price, quantity: 1 });
+
+  saveCart(cart);
+  updateCartCount();
+  renderMiniCart();
+}
+
+
+function toggleMiniCart() {
+  document.getElementById("mini-cart").classList.toggle("active");
+}
+
+function goToCart() {
+  window.location.href = "cart.html";
+}
 
     function removeFromCart(index){
         cart.splice(index,1);
@@ -171,6 +196,26 @@ function toggleMenu() {
         document.getElementById('cart-count').textContent = cart.reduce((sum,i)=>sum+i.quantity,0);
     }
 
+    function goToCart() {
+  window.location.href = "cart.html";
+}
+
+function loadCart() {
+  return JSON.parse(localStorage.getItem("cart")) || [];
+}
+
+function saveCart(cart) {
+  localStorage.setItem("cart", JSON.stringify(cart));
+}
+
+function updateCartCount() {
+  const cart = loadCart();
+  const count = cart.reduce((sum, i) => sum + i.quantity, 0);
+  const el = document.getElementById("cart-count");
+  if (el) el.textContent = count;
+}
+
+
     function checkout(){
         if(cart.length===0){ alert("Cart is empty!"); return; }
         let summary = "You purchased:\n";
@@ -181,13 +226,34 @@ function toggleMenu() {
         updateCart();
     }
 
-	<div id="specs-modal">
-    <div id="specs-box">
-        <span id="close-specs" onclick="closeSpecs()">X</span>
-        <h3>Specifications</h3>
-        <p id="specs-text"></p>
-    </div>
-</div>
+function renderMiniCart() {
+  const cart = loadCart();
+  const itemsDiv = document.getElementById("mini-cart-items");
+  const totalDiv = document.getElementById("mini-cart-total");
+
+  itemsDiv.innerHTML = "";
+  let total = 0;
+
+  if (cart.length === 0) {
+    itemsDiv.innerHTML = "<p>Your cart is empty.</p>";
+    totalDiv.textContent = "";
+    return;
+  }
+
+  cart.forEach(item => {
+    total += item.price * item.quantity;
+
+    const div = document.createElement("div");
+    div.className = "mini-cart-item";
+    div.innerHTML = `
+      <span>${item.name}</span>
+      <span>x${item.quantity}</span>
+    `;
+    itemsDiv.appendChild(div);
+  });
+
+  totalDiv.innerHTML = `<strong>Total:</strong> $${total}`;
+}
 
     // ---------- CART TOGGLE ----------
     const cartToggle = document.getElementById('cart-toggle');

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <img src="./Images/Logo.png" alt="CloudBoundPCs Logo" class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
+    <h2 style="margin-left:auto;">Your Cart</h2>
+  </header>
+
+  <main class="cart-page">
+    <div id="cart-items" class="cart-items"></div>
+    <div id="cart-total" class="cart-total"></div>
+
+    <div class="cart-actions">
+      <button class="cart-btn" onclick="window.location.href='index.html'">Continue Shopping</button>
+      <button class="cart-btn primary" onclick="checkout()">Checkout</button>
+    </div>
+  </main>
+
+  <script>
+    function loadCart() {
+      return JSON.parse(localStorage.getItem("cart")) || [];
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+
+    function renderCart() {
+      const cart = loadCart();
+      const itemsDiv = document.getElementById("cart-items");
+      const totalDiv = document.getElementById("cart-total");
+
+      itemsDiv.innerHTML = "";
+      let total = 0;
+
+      if (cart.length === 0) {
+        itemsDiv.innerHTML = "<p>Your cart is empty.</p>";
+        totalDiv.innerHTML = "";
+        return;
+      }
+
+      cart.forEach((item, index) => {
+        total += item.price * item.quantity;
+
+        const row = document.createElement("div");
+        row.className = "cart-row";
+        row.innerHTML = `
+          <div class="cart-left">
+            <strong>${item.name}</strong>
+            <div class="cart-price">$${item.price}</div>
+          </div>
+
+          <div class="cart-right">
+            <button onclick="changeQty(${index}, -1)">-</button>
+            <span class="qty">${item.quantity}</span>
+            <button onclick="changeQty(${index}, 1)">+</button>
+            <button class="remove" onclick="removeItem(${index})">Remove</button>
+          </div>
+        `;
+        itemsDiv.appendChild(row);
+      });
+
+      totalDiv.innerHTML = `<strong>Total:</strong> $${total}`;
+    }
+
+    function changeQty(index, delta) {
+      const cart = loadCart();
+      cart[index].quantity += delta;
+
+      if (cart[index].quantity <= 0) cart.splice(index, 1);
+
+      saveCart(cart);
+      renderCart();
+    }
+
+    function removeItem(index) {
+      const cart = loadCart();
+      cart.splice(index, 1);
+      saveCart(cart);
+      renderCart();
+    }
+
+    function checkout() {
+      const cart = loadCart();
+      if (cart.length === 0) {
+        alert("Your cart is empty.");
+        return;
+      }
+      alert("Checkout complete!");
+      saveCart([]);
+      renderCart();
+    }
+
+    document.addEventListener("DOMContentLoaded", renderCart);
+  </script>
+</body>
+</html>

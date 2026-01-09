@@ -363,6 +363,50 @@ button:hover {
     vertical-align: top;
     margin-left: 5px;
 }
+.mini-cart{
+  position: absolute;
+  top: 80px;
+  right: 30px;
+  width: 320px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  padding: 16px;
+  display: none;
+  z-index: 999;
+}
+
+.mini-cart.active{
+  display: block;
+}
+
+.mini-cart h3{
+  margin-bottom: 12px;
+}
+
+.mini-cart-item{
+  display:flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.mini-cart-total{
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.view-cart-btn{
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
 
 footer {
     margin-top: 40px;
