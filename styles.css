@@ -341,20 +341,18 @@ button:hover {
     font-size: 0.8rem;
 }
 
-/* Floating Cart Button */
+
 #cart-toggle {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #ffc107;
+    position: static;              
+    margin-left: auto;             
+    background: #7a4a85;
     color: #000;
     border: none;
-    padding: 15px 20px;
-    border-radius: 50px;
+    padding: 10px 14px;
+    border-radius: 30px;
     cursor: pointer;
     font-weight: bold;
-    z-index: 1001;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 #cart-count {
     background: red;
