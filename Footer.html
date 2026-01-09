@@ -1,0 +1,20 @@
+<footer class="site-footer">
+  <div class="footer-content">
+    <p>© 2026 CloudBoundPCs. All rights reserved.</p>
+
+    <div class="footer-links">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  fetch("footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
+    })
+    .catch(err => console.error("Footer load failed:", err));
+</script>
