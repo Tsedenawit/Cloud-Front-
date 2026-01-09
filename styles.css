@@ -161,37 +161,85 @@ html, body {
 
 
 /* Listing Items */
+/* Section title */
+.section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #222;
+}
+
+/* Product grid */
 .listing {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    gap: 25px;
+    justify-content: center;
     flex-wrap: wrap;
-    margin-bottom: 40px;
 }
+
+/* Product card */
 .item {
-    width: 30%;
-    background: #f0f0f0;
-    border-radius: 5px;
-    padding: 10px;
-    box-sizing: border-box;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    width: 260px;
     text-align: center;
-    transition: transform 0.2s ease;
-    margin-bottom: 20px;
-}
-.item:hover {
-    transform: scale(1.05);
-}
-.item img {
-    width: 80%;
-    border-radius: 8px;
-    background: #e0e0e0;
-
-    box-shadow: 
-        0 10px 25px rgba(0, 0, 0, 0.12),
-        0 4px 10px rgba(0, 0, 0, 0.08);
-
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+/* Hover effect */
+.item:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* Product image */
+.item img {
+    width: 180px;
+    height: auto;
+    margin-bottom: 15px;
+    object-fit: contain;
+}
+
+/* Product name */
+.item h3 {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* Buttons */
+.item button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+/* Add to cart */
+.item button:first-of-type {
+    background: #007bff;
+    color: white;
+}
+
+.item button:first-of-type:hover {
+    background: #0056b3;
+}
+
+/* Specs button */
+.spec-btn {
+    background: #f1f1f1;
+    color: #333;
+}
+
+.spec-btn:hover {
+    background: #e0e0e0;
+}
+
 
 
 button {
