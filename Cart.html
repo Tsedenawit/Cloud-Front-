@@ -5,99 +5,314 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Your Cart</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Cart-specific styles (you can move these into style.css) -->
+  <style>
+    .cart-shell{
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 24px;
+    }
+
+    .cart-card{
+      background:#fff;
+      border: 1px solid rgba(0,0,0,0.15);
+      padding: 28px 32px;
+    }
+
+    .cart-table{
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    .cart-table thead th{
+      text-align: left;
+      font-weight: 600;
+      padding: 12px 0 18px 0;
+      border-bottom: 1px solid rgba(0,0,0,0.25);
+    }
+
+    /* Column sizing similar to your screenshot */
+    .cart-col-product{ width: 42%; }
+    .cart-col-price{ width: 18%; }
+    .cart-col-qty{ width: 20%; }
+    .cart-col-total{ width: 20%; text-align: right; }
+
+    .cart-table tbody td{
+      padding: 26px 0;
+      vertical-align: middle;
+      border-bottom: 1px solid rgba(0,0,0,0.25);
+    }
+
+    .product-cell{
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .product-img{
+      width: 110px;
+      height: 70px;
+      object-fit: contain;
+      display:block;
+    }
+
+    .product-name{
+      font-weight: 600;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .remove-link{
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 0.95rem;
+      color: rgba(0,0,0,0.55);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .money{
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .qty-wrap{
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(0,0,0,0.35);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .qty-btn{
+      width: 34px;
+      height: 30px;
+      background: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .qty-value{
+      width: 44px;
+      height: 30px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-left: 1px solid rgba(0,0,0,0.35);
+      border-right: 1px solid rgba(0,0,0,0.35);
+      font-variant-numeric: tabular-nums;
+      color: rgba(0,0,0,0.65);
+    }
+
+    .total-cell{
+      text-align:right;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* Bottom summary area like screenshot */
+    .cart-summary{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      padding-top: 26px;
+      align-items: start;
+    }
+
+    .subtotal-left{
+      justify-self: center; /* screenshot shows centered under table area */
+      font-weight: 600;
+    }
+
+    .subtotal-right{
+      justify-self: end;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .checkout-box{
+      grid-column: 2 / 3;
+      justify-self: end;
+      width: 430px;              /* wide button like screenshot */
+      max-width: 100%;
+      text-align: center;
+      margin-top: 14px;
+    }
+
+    .checkout-btn{
+      width: 100%;
+      padding: 14px 18px;
+      border: none;
+      cursor: pointer;
+      background: #000;
+      color: #fff;
+      border-radius: 6px;
+      box-shadow: 0 12px 22px rgba(0,0,0,0.25);
+    }
+
+    .view-cart-link{
+      display: inline-block;
+      margin-top: 10px;
+      color: rgba(0,0,0,0.7);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    /* Empty state */
+    .cart-empty{
+      padding: 22px 0;
+      color: rgba(0,0,0,0.65);
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 760px){
+      .cart-col-price, .cart-col-total{ display:none; }
+      .cart-col-product{ width: 60%; }
+      .cart-col-qty{ width: 40%; }
+
+      .cart-summary{
+        grid-template-columns: 1fr;
+      }
+      .subtotal-left, .subtotal-right{
+        justify-self: start;
+      }
+      .checkout-box{
+        grid-column: 1 / 2;
+        justify-self: start;
+        width: 100%;
+      }
+      .product-cell{
+        grid-template-columns: 90px 1fr;
+      }
+      .product-img{
+        width: 90px;
+        height: 60px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
- <header class="navbar">
-    <img src="./Images/Logo.png" alt="CloudBoundPCs Logo" class="logo">
+  <!-- You can keep your navbar if you want; keeping page simple here -->
+  <div class="cart-shell">
+    <div class="cart-card">
 
-   <div class="menu-wrapper">
-        <div class="burger" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+      <table class="cart-table">
+        <thead>
+          <tr>
+            <th class="cart-col-product">Product</th>
+            <th class="cart-col-price">Price</th>
+            <th class="cart-col-qty">Quantity</th>
+            <th class="cart-col-total">Total</th>
+          </tr>
+        </thead>
+
+        <tbody id="cartBody">
+          <!-- JS fills rows -->
+        </tbody>
+      </table>
+
+      <div class="cart-summary">
+        <div class="subtotal-left">Subtotal</div>
+        <div class="subtotal-right" id="subtotalMoney">$0.00</div>
+
+        <div class="checkout-box">
+          <button class="checkout-btn" onclick="checkout()">Checkout</button>
+          <div class="view-cart-link" onclick="window.location.href='index.html'">View Cart</div>
         </div>
-
-      <nav id="navMenu" class="nav-menu">
-  <a href="index.html#desktops-listing">Desktops</a>
-  <a href="index.html#laptops-listing">Laptops</a>
-  <a href="index.html#accessories-listing">Accessories</a>
-</nav>
+      </div>
 
     </div>
-
-    <input type="text" id="search-bar" placeholder="Search products..." />
-
-<button id="cart-toggle" class="cart-nav" onclick="toggleMiniCart()">
-  🛒 <span id="cart-count">0</span>
-</button>
-
-
-</header>
-
-  <main class="cart-page">
-    <div id="cart-items" class="cart-items"></div>
-    <div id="cart-total" class="cart-total"></div>
-
-    <div class="cart-actions">
-      <button class="cart-btn" onclick="window.location.href='index.html'">Continue Shopping</button>
-      <button class="cart-btn primary" onclick="checkout()">Checkout</button>
-    </div>
-  </main>
+  </div>
 
   <script>
+    // ---------- Storage helpers ----------
     function loadCart() {
       return JSON.parse(localStorage.getItem("cart")) || [];
     }
-
     function saveCart(cart) {
       localStorage.setItem("cart", JSON.stringify(cart));
     }
 
+    // ---------- Formatting ----------
+    function money(n) {
+      // Always show 2 decimals like screenshot
+      return "$" + Number(n).toFixed(2);
+    }
+    function pad2(n){
+      return String(n).padStart(2, "0");
+    }
+
+    // ---------- Rendering ----------
     function renderCart() {
       const cart = loadCart();
-      const itemsDiv = document.getElementById("cart-items");
-      const totalDiv = document.getElementById("cart-total");
+      const tbody = document.getElementById("cartBody");
+      const subtotalEl = document.getElementById("subtotalMoney");
 
-      itemsDiv.innerHTML = "";
-      let total = 0;
+      tbody.innerHTML = "";
+      let subtotal = 0;
 
       if (cart.length === 0) {
-        itemsDiv.innerHTML = "<p>Your cart is empty.</p>";
-        totalDiv.innerHTML = "";
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="4" class="cart-empty">Your cart is empty.</td>
+          </tr>
+        `;
+        subtotalEl.textContent = money(0);
         return;
       }
 
       cart.forEach((item, index) => {
-        total += item.price * item.quantity;
+        const qty = item.quantity || 1;
+        const lineTotal = (item.price || 0) * qty;
+        subtotal += lineTotal;
 
-        const row = document.createElement("div");
-        row.className = "cart-row";
-        row.innerHTML = `
-          <div class="cart-left">
-            <strong>${item.name}</strong>
-            <div class="cart-price">$${item.price}</div>
-          </div>
+        // If you don't store images yet, it uses a placeholder.
+        const imgSrc = item.img || "./Images/placeholder.png";
 
-          <div class="cart-right">
-            <button onclick="changeQty(${index}, -1)">-</button>
-            <span class="qty">${item.quantity}</span>
-            <button onclick="changeQty(${index}, 1)">+</button>
-            <button class="remove" onclick="removeItem(${index})">Remove</button>
-          </div>
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="cart-col-product">
+            <div class="product-cell">
+              <img class="product-img" src="${imgSrc}" alt="${item.name || "Product"}" onerror="this.src='./Images/placeholder.png'">
+              <div>
+                <p class="product-name">${item.name || "Product"}</p>
+                <span class="remove-link" onclick="removeItem(${index})">Remove</span>
+              </div>
+            </div>
+          </td>
+
+          <td class="cart-col-price money">${money(item.price || 0)}</td>
+
+          <td class="cart-col-qty">
+            <div class="qty-wrap">
+              <button class="qty-btn" onclick="changeQty(${index}, -1)">-</button>
+              <div class="qty-value">${pad2(qty)}</div>
+              <button class="qty-btn" onclick="changeQty(${index}, 1)">+</button>
+            </div>
+          </td>
+
+          <td class="cart-col-total total-cell">${money(lineTotal)}</td>
         `;
-        itemsDiv.appendChild(row);
+        tbody.appendChild(tr);
       });
 
-      totalDiv.innerHTML = `<strong>Total:</strong> $${total}`;
+      subtotalEl.textContent = money(subtotal);
     }
 
     function changeQty(index, delta) {
       const cart = loadCart();
-      cart[index].quantity += delta;
+      cart[index].quantity = (cart[index].quantity || 1) + delta;
 
-      if (cart[index].quantity <= 0) cart.splice(index, 1);
-
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
       saveCart(cart);
       renderCart();
     }

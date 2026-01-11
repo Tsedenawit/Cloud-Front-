@@ -12,6 +12,11 @@ html, body {
     height: auto;
     padding-left:60px;
 }
+.logoscart{
+  width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
 
 
 .navbar{
