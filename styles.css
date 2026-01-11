@@ -8,12 +8,12 @@ html, body {
 }
 
 .logo {
-    width: 70px;
+    width: 130px;
     height: auto;
-    background-color: white;
+    padding-left:60px;
 }
 
-/* Make sure navbar lines up */
+
 .navbar{
     display:flex;
     align-items:center;
@@ -58,6 +58,7 @@ html, body {
     padding:10px;
     min-width: 180px;
     z-index: 1000;
+    padding-top: 130px;
 }
 
 .nav-menu a{
@@ -100,7 +101,7 @@ html, body {
 } */
 
 
-/* Banner */
+
 .site-banner {
     background: url('banner.jpg') center/cover no-repeat;
     color: white;
@@ -114,16 +115,17 @@ html, body {
     text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
 }
 
-/* Search Bar */
+
 #search-bar {
-    width: 80%;
-    max-width: 500px;
+    width: 150%;
+    max-width: 800px;
     padding: 10px;
     font-size: 1rem;
     border-radius: 5px;
     border: 1px solid #ccc;
-    margin: 0 auto 40px auto;
+    margin: 30px auto 40px auto;
     display: block;
+    padding-top: 20px;
 }
 
 /* Auto slider */
