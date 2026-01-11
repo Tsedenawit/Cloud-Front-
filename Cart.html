@@ -8,10 +8,32 @@
 </head>
 <body>
 
-  <header class="navbar">
-    <img src="./Images/Logo.png" alt="CloudBoundPCs Logo" class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
-    <h2 style="margin-left:auto;">Your Cart</h2>
-  </header>
+ <header class="navbar">
+    <img src="./Images/Logo.png" alt="CloudBoundPCs Logo" class="logo">
+
+   <div class="menu-wrapper">
+        <div class="burger" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+      <nav id="navMenu" class="nav-menu">
+  <a href="index.html#desktops-listing">Desktops</a>
+  <a href="index.html#laptops-listing">Laptops</a>
+  <a href="index.html#accessories-listing">Accessories</a>
+</nav>
+
+    </div>
+
+    <input type="text" id="search-bar" placeholder="Search products..." />
+
+<button id="cart-toggle" class="cart-nav" onclick="toggleMiniCart()">
+  🛒 <span id="cart-count">0</span>
+</button>
+
+
+</header>
 
   <main class="cart-page">
     <div id="cart-items" class="cart-items"></div>

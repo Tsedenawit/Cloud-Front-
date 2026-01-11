@@ -265,15 +265,15 @@ html, body {
 
 /* Add to cart */
 .item button:first-of-type {
-    background: #007bff;
+    background: #054488;
     color: white;
 }
 
 .item button:first-of-type:hover {
-    background: #0056b3;
+    background: #2d7fd6;
 }
 
-/* Specs button */
+
 .spec-btn {
     background: #f1f1f1;
     color: #333;
