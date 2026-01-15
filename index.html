@@ -11,7 +11,7 @@
 
   
   <header class="navbar">
-    <img src="/images/Logo.png" alt="CloudBoundPCs Logo" class="logo">
+    <img src="/Images/logo.png" alt="CloudBoundPCs Logo" class="logo">
 
     <div class="menu-wrapper">
       <div class="burger" onclick="toggleMenu()">
@@ -304,14 +304,39 @@ function closeSpecs() {
     modal.setAttribute("aria-hidden", "true");
   }
 }
-
-
-    // Keep cart count correct on page load
     updateCartCount();
+    
+document.addEventListener("click", (event) => {
+  const navMenu = document.getElementById("navMenu");
+  const burger = document.querySelector(".burger");
+
+  const miniCart = document.getElementById("mini-cart");
+  const cartToggle = document.getElementById("cart-toggle");
+
+  if (
+    navMenu &&
+    navMenu.classList.contains("active") &&
+    !navMenu.contains(event.target) &&
+    !burger.contains(event.target)
+  ) {
+    navMenu.classList.remove("active");
+  }
+
+
+  if (
+    miniCart &&
+    miniCart.classList.contains("active") &&
+    !miniCart.contains(event.target) &&
+    !cartToggle.contains(event.target)
+  ) {
+    miniCart.classList.remove("active");
+  }
+});
+
   </script>
 
   <script>
-    // ---------- KUMO CHAT ----------
+ 
     const API_URL = "https://mqrhmpoo5i.execute-api.us-east-1.amazonaws.com/Chat";
 
   function toggleChat() {
