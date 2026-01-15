@@ -279,10 +279,15 @@
     // ---------- KUMO CHAT ----------
     const API_URL = "https://mqrhmpoo5i.execute-api.us-east-1.amazonaws.com/Chat";
 
-    function toggleChat() {
-      const b = document.getElementById("chat-body");
-      b.style.display = (b.style.display === "none") ? "block" : "none";
-    }
+  function toggleChat() {
+  const b = document.getElementById("chat-body");
+  const chev = document.getElementById("chat-chevron");
+
+  const isClosed = (b.style.display === "none" || b.style.display === "");
+  b.style.display = isClosed ? "block" : "none";
+  if (chev) chev.textContent = isClosed ? "▼" : "▲";
+}
+
 
     function handleEnter(e) {
       if (e.key === "Enter") sendMessage();
@@ -294,12 +299,10 @@
       const text = (input.value || "").trim();
       if (!text) return;
 
-      const userDiv = document.createElement("div");
-      userDiv.style.textAlign = "right";
-      userDiv.style.color = "#555";
-      userDiv.style.margin = "5px";
-      userDiv.textContent = `You: ${text}`;
-      output.appendChild(userDiv);
+     const userDiv = document.createElement("div");
+userDiv.className = "kumo-msg kumo-user";
+userDiv.textContent = text;
+output.appendChild(userDiv);
 
       input.value = "";
 
@@ -320,12 +323,11 @@ let data;
 try { data = JSON.parse(raw); } catch { data = { reply: raw }; }
 
 
-        const botDiv = document.createElement("div");
-        botDiv.style.textAlign = "left";
-        botDiv.style.color = "blue";
-        botDiv.style.margin = "5px";
-        botDiv.textContent = `Kumo: ${data.reply ?? ""}`;
-        output.appendChild(botDiv);
+const botDiv = document.createElement("div");
+botDiv.className = "kumo-msg kumo-bot";
+botDiv.textContent = data.reply ?? "";
+output.appendChild(botDiv);
+
 
         output.scrollTop = output.scrollHeight;
       } catch (e) {

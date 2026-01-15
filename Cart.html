@@ -6,7 +6,7 @@
   <title>Your Cart</title>
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Cart-specific styles (you can move these into style.css) -->
+
   <style>
     .cart-shell{
       max-width: 1000px;
@@ -33,7 +33,7 @@
       border-bottom: 1px solid rgba(0,0,0,0.25);
     }
 
-    /* Column sizing similar to your screenshot */
+  
     .cart-col-product{ width: 42%; }
     .cart-col-price{ width: 18%; }
     .cart-col-qty{ width: 20%; }
@@ -115,7 +115,7 @@
       white-space: nowrap;
     }
 
-    /* Bottom summary area like screenshot */
+  
     .cart-summary{
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -125,7 +125,7 @@
     }
 
     .subtotal-left{
-      justify-self: center; /* screenshot shows centered under table area */
+      justify-self: center; 
       font-weight: 600;
     }
 
@@ -138,7 +138,7 @@
     .checkout-box{
       grid-column: 2 / 3;
       justify-self: end;
-      width: 430px;              /* wide button like screenshot */
+      width: 430px;              
       max-width: 100%;
       text-align: center;
       margin-top: 14px;
@@ -163,13 +163,11 @@
       cursor: pointer;
     }
 
-    /* Empty state */
+   
     .cart-empty{
       padding: 22px 0;
       color: rgba(0,0,0,0.65);
     }
-
-    /* Mobile tweaks */
     @media (max-width: 760px){
       .cart-col-price, .cart-col-total{ display:none; }
       .cart-col-product{ width: 60%; }
@@ -199,7 +197,7 @@
 
 <body>
 
-  <!-- You can keep your navbar if you want; keeping page simple here -->
+
   <div class="cart-shell">
     <div class="cart-card">
 
@@ -214,7 +212,7 @@
         </thead>
 
         <tbody id="cartBody">
-          <!-- JS fills rows -->
+
         </tbody>
       </table>
 
@@ -234,7 +232,7 @@
   </div>
 
   <script>
-    // ---------- Storage helpers ----------
+
     function loadCart() {
       return JSON.parse(localStorage.getItem("cart")) || [];
     }
@@ -242,16 +240,16 @@
       localStorage.setItem("cart", JSON.stringify(cart));
     }
 
-    // ---------- Formatting ----------
+    
     function money(n) {
-      // Always show 2 decimals like screenshot
+      
       return "$" + Number(n).toFixed(2);
     }
     function pad2(n){
       return String(n).padStart(2, "0");
     }
 
-    // ---------- Rendering ----------
+  
     function renderCart() {
       const cart = loadCart();
       const tbody = document.getElementById("cartBody");
