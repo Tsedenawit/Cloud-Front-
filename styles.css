@@ -78,7 +78,7 @@ html, body {
     background:#f3f3f3;
 }
 
-/* When active */
+
 .nav-menu.active{
     display:block;
 }
@@ -100,7 +100,7 @@ html, body {
   color: #111;
 }
 
-/* Cart button: icon + text (navbar style) */
+
 .cart-link {
   position: relative;
   display: inline-flex;
@@ -111,7 +111,7 @@ html, body {
   background: transparent;
   cursor: pointer;
 
-  color: #fff;            /* if your navbar is blue */
+  color: #fff;            
   font-weight: 700;
   font-size: 18px;
 }
@@ -352,6 +352,86 @@ html, body {
 .spec-btn:hover {
     background: #e0e0e0;
 }
+/* =========================
+   SPECS MODAL
+   ========================= */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  z-index: 99999;
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+
+.modal-card {
+  position: relative;
+  width: min(520px, calc(100vw - 32px));
+  margin: 10vh auto 0;
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px 18px 14px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+}
+
+.modal-card h3 {
+  margin: 0 0 10px;
+  color: #054488;
+}
+
+.modal-content {
+  color: #222;
+  line-height: 1.5;
+  max-height: 45vh;
+  overflow: auto;
+  padding-right: 6px;
+}
+
+/* close X */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(0,0,0,0.06);
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  background: rgba(0,0,0,0.10);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 14px;
+}
+
+.modal-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  background: #054488;
+  color: #fff;
+  font-weight: 600;
+}
+
+.modal-btn:hover {
+  background: #2d7fd6;
+}
+
 
 button {
     padding: 10px 20px;

@@ -159,13 +159,29 @@
     </div>
   </section>
 
-  <!-- MINI CART -->
+ 
   <div id="mini-cart" class="mini-cart">
     <h3>Your Cart</h3>
     <div id="mini-cart-items"></div>
     <div class="mini-cart-total" id="mini-cart-total"></div>
     <button class="view-cart-btn" onclick="goToCart()">View Cart</button>
   </div>
+
+  
+<div id="specs-modal" class="modal" aria-hidden="true">
+  <div class="modal-overlay" onclick="closeSpecs()"></div>
+
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="specs-title">
+    <button class="modal-close" onclick="closeSpecs()" aria-label="Close">✕</button>
+
+    <h3 id="specs-title">Specs</h3>
+    <div id="specs-content" class="modal-content"></div>
+
+    <div class="modal-actions">
+      <button class="modal-btn" onclick="closeSpecs()">Close</button>
+    </div>
+  </div>
+</div>
 
  
   <div id="footer-placeholder"></div>
@@ -270,9 +286,25 @@
       totalDiv.innerHTML = `<strong>Total:</strong> $${total}`;
     }
 
-    function openSpecs(text) {
-      alert(text);
-    }
+  function openSpecs(text) {
+  const modal = document.getElementById("specs-modal");
+  const content = document.getElementById("specs-content");
+
+  if (content) content.textContent = text;
+  if (modal) {
+    modal.classList.add("show");
+    modal.setAttribute("aria-hidden", "false");
+  }
+}
+
+function closeSpecs() {
+  const modal = document.getElementById("specs-modal");
+  if (modal) {
+    modal.classList.remove("show");
+    modal.setAttribute("aria-hidden", "true");
+  }
+}
+
 
     // Keep cart count correct on page load
     updateCartCount();
