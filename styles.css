@@ -85,16 +85,48 @@ html, body {
 
 
 .cart-nav {
-    background: #ffc107;
-    color: #000;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: bold;
+  position: relative;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.cart-icon {
+  font-size: 22px;
+  color: #111;
+}
+
+/* Cart count badge */
+.cart-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: #e63946; /* professional red */
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Hover effect */
+.cart-nav:hover .cart-icon {
+  transform: scale(1.08);
+}
+
 .cart-nav:hover {
-    background: #e0a800;
+  background: rgba(0,0,0,0.04);
+  border-radius: 8px;
 }
 
 
@@ -456,7 +488,7 @@ button:hover {
   z-index: 9999;
 }
 
-/* Collapsed "bubble" look when closed */
+
 #chat-header {
   cursor: pointer;
   user-select: none;
@@ -471,7 +503,6 @@ button:hover {
   color: #fff;
 }
 
-/* Chat panel */
 #chat-body {
   margin-top: 10px;
   border-radius: 16px;
@@ -481,7 +512,7 @@ button:hover {
   border: 1px solid rgba(0,0,0,0.08);
 }
 
-/* Output area */
+
 #chat-output {
   height: 260px;
   overflow-y: auto;
@@ -489,7 +520,7 @@ button:hover {
   background: #fafafa;
 }
 
-/* Each message bubble */
+
 .kumo-msg {
   max-width: 85%;
   padding: 10px 12px;
@@ -500,7 +531,7 @@ button:hover {
   white-space: pre-wrap;
 }
 
-/* User bubble */
+
 .kumo-user {
   margin-left: auto;
   background: #111;
@@ -508,7 +539,7 @@ button:hover {
   border-bottom-right-radius: 6px;
 }
 
-/* Bot bubble */
+
 .kumo-bot {
   margin-right: auto;
   background: #e9eefc;
@@ -516,7 +547,7 @@ button:hover {
   border-bottom-left-radius: 6px;
 }
 
-/* Input row */
+
 .kumo-input-row {
   display: flex;
   gap: 8px;
@@ -551,7 +582,7 @@ button:hover {
   transform: translateY(1px);
 }
 
-/* Mobile: make it a little wider and closer to edges */
+
 @media (max-width: 480px) {
   #kumo-chat { right: 12px; bottom: 12px; width: 92vw; }
 }
