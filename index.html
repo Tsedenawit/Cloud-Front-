@@ -27,10 +27,12 @@
 
     <input type="text" id="search-bar" placeholder="Search products..." />
 
-  <button id="cart-toggle" class="cart-nav" onclick="toggleMiniCart()">
-  <span class="cart-icon">🛒</span>
+<button id="cart-toggle" class="cart-link" onclick="toggleMiniCart()" aria-label="Cart">
+  <span class="cart-icon" aria-hidden="true">🛒</span>
+  <span class="cart-text">Cart</span>
   <span id="cart-count" class="cart-badge">0</span>
 </button>
+
   </header>
 
   
